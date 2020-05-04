@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 #include <algorithm>
 using namespace std;
 
@@ -22,6 +23,9 @@ public:
 		}
 
 		for (int i = start; i < candidates.size(); ++i) {
+			if (i > start && candidates[i] == candidates[i-1]) {
+				continue;
+			}
 			path.push_back(candidates[i]);
 			dfs(candidates, i + 1, target - candidates[i]);
 			path.pop_back();
@@ -34,3 +38,18 @@ public:
 		return ans;
 	}
 };
+
+int main(int argc, char *argv[])
+{
+	vector<int> v = {10,1,2,7,6,1,5};
+	Solution s;
+	auto a = s.combinationSum2(v, 8);
+	for (auto i : a) {
+		cout << '[';
+		for (auto j : i) {
+			cout << j << ',';
+		}
+		cout << ']' << endl;
+	}
+	return 0;
+}
