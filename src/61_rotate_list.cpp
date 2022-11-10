@@ -1,27 +1,26 @@
 struct ListNode {
-	int val;
-	ListNode *next;
-	ListNode(int x) : val(x), next(nullptr) {}
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(nullptr) {}
 };
-class Solution {
+class Solution
+{
 public:
-	ListNode* rotateRight(ListNode* head, int k) {
-		
-		if (nullptr == head)
-		{
-			return nullptr;
-		}
+    ListNode *rotateRight(ListNode *head, int k)
+    {
+        if (nullptr == head) {
+            return nullptr;
+        }
 
-		ListNode *node = head;
-		ListNode *newHead = nullptr;
+        ListNode *node = head;
+        ListNode *newHead = nullptr;
 
-		while (node != nullptr) {
-			node = node->next;
-		}
+        while (node != nullptr) {
+            node = node->next;
+        }
 
-		newHead = node;
+        newHead = node;
 
-		return newHead;
-	}
+        return newHead;
+    }
 };
-

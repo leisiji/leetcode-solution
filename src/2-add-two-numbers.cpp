@@ -12,7 +12,8 @@ public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2);
 };
 
-ListNode* Solution::addTwoNumbers(ListNode* l1, ListNode* l2) {
+ListNode* Solution::addTwoNumbers(ListNode* l1, ListNode* l2)
+{
     ListNode *n1 = l1, *n2 = l2;
     ListNode *head = nullptr, *prev;
     int val1, val2, carry = 0, sum;
@@ -49,4 +50,3 @@ ListNode* Solution::addTwoNumbers(ListNode* l1, ListNode* l2) {
 
     return head;
 }
-
