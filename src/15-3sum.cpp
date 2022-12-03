@@ -23,21 +23,54 @@ vector<vector<int>> Solution::threeSum(vector<int>& nums)
 
     sort(nums.begin(), nums.end());
 
-    int i = 0, j = 1, k = 2;
+    int i = 0, j, k;
+    const int n = nums.size();
+    int sum = 0;
 
-    while (k < nums.size()) {
-        if (nums[i] >= 0) {
-            break;
+    for (int i = 0; i < n;) {
+        j = i + 1;
+        k = nums.size() - 1;
+
+        while (j < k) {
+            sum = nums[i] + nums[j] + nums[k];
+            if (sum == 0) {
+                res.push_back({nums[i], nums[j], nums[k]});
+                int nums_j = nums[j++];
+                while (j < n) {
+                    if (nums[j] != nums_j) {
+                        break;
+                    }
+                    j++;
+                }
+                int nums_k = nums[k--];
+                while (k >= 0) {
+                    if (nums[k] != nums_k) {
+                        break;
+                    }
+                    k--;
+                }
+            } else if (sum > 0) {
+                k--;
+            } else {
+                j++;
+            }
+        }
+
+        int nums_i = nums[i++];
+        while (i < n) {
+            if (nums[i] != nums_i) {
+                break;
+            }
+            i++;
         }
     }
 
     return res;
 }
 
-int main(int argc, char* argv[])
+void test(vector<int> &a)
 {
     Solution s;
-    vector<int> a = {-1, 0, 1, 2, -1, -4};
     auto res = s.threeSum(a);
     for (auto& i : res) {
         cout << "[";
@@ -47,5 +80,13 @@ int main(int argc, char* argv[])
         cout << "]";
     }
     cout << endl;
+}
+
+int main(int argc, char* argv[])
+{
+    vector<int> a = {-1, 0, 1, 2, -1, -4}; // [[-1,-1,2],[-1,0,1]]
+    vector<int> b = {-2, 0, -4, -3, 4, 1, 2, -1, -4};
+    test(a);
+    test(b);
     return 0;
 }
