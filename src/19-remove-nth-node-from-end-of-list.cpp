@@ -1,18 +1,8 @@
 #include <iostream>
 #include <vector>
+#include "listnode.h"
 
 using namespace std;
-
-/**
- * Definition for singly-linked list.
- */
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode* next) : val(x), next(next) {}
-};
 
 class Solution
 {
@@ -21,18 +11,6 @@ public:
     ListNode* removeNthFromEnd1(ListNode* head, int n);
     void printList(ListNode* head);
 };
-
-void Solution::printList(ListNode* h)
-{
-    auto n = h;
-
-    cout << "[";
-    while (n != nullptr) {
-        cout << n->val << " ";
-        n = n->next;
-    }
-    cout << "]" << endl;
-}
 
 /* 使用一个数组保存 n 个节点，可以实现一次遍历就找到：空间复杂度 O(n)，时间复杂度 O(L) */
 ListNode* Solution::removeNthFromEnd(ListNode* head, int n)
@@ -97,23 +75,11 @@ ListNode* Solution::removeNthFromEnd1(ListNode* head, int n)
 
 int main(int argc, char* argv[])
 {
-    ListNode head1(1);
-    head1.next = new ListNode(2);
-    head1.next->next = new ListNode(3);
-    head1.next->next->next = new ListNode(4);
-    head1.next->next->next->next = new ListNode(5);
+    auto head1 = ListNode::vec_to_list({1, 2, 3, 4, 5});
 
     Solution s;
-    auto h1 = s.removeNthFromEnd(&head1, 2);
-    s.printList(h1);
-
-    ListNode head2(1);
-    head2.next = new ListNode(2);
-    head2.next->next = new ListNode(3);
-    head2.next->next->next = new ListNode(4);
-    head2.next->next->next->next = new ListNode(5);
-    auto h2 = s.removeNthFromEnd1(&head2, 2);
-    s.printList(h2);
+    auto h1 = s.removeNthFromEnd(head1, 2);
+    cout << h1 << endl;
 
     return 0;
 }

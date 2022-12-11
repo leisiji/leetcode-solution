@@ -1,13 +1,7 @@
 #include <algorithm>
 #include <iostream>
 
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode* next) : val(x), next(next) {}
-};
+#include "listnode.h"
 
 class Solution
 {
@@ -57,26 +51,12 @@ int main(int argc, char* argv[])
 {
     Solution s;
 
-    ListNode head1(5);
-    head1.next = new ListNode(6);
-    head1.next->next = new ListNode(7);
-    head1.next->next->next = new ListNode(8);
-    head1.next->next->next->next = new ListNode(9);
+    auto head1 = ListNode::vec_to_list({5, 6, 7, 8, 9});
+    auto head2 = ListNode::vec_to_list({1, 2, 3, 4, 5});
 
-    ListNode head2(1);
-    head2.next = new ListNode(2);
-    head2.next->next = new ListNode(3);
-    head2.next->next->next = new ListNode(4);
-    head2.next->next->next->next = new ListNode(5);
+    auto h2 = s.mergeTwoLists(head1, head2);
 
-    auto h2 = s.mergeTwoLists(&head1, &head2);
-
-    std::cout << "[";
-    while (h2 != nullptr) {
-        std::cout << h2->val << ",";
-        h2 = h2->next;
-    }
-    std::cout << "]" << std::endl;
+    std::cout << h2 << std::endl;
 
     return 0;
 }
