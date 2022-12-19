@@ -67,7 +67,7 @@ int Solution::divide(int dividend, int divisor)
     }
 
     while (right - left < divisor) {
-        int mid = (left + right) >> 1;
+        int mid = (left >> 1) + (right >> 1);
         int mid_index = (right_index + left_index) >> 1;
         if (mid > dividend) {
             left = mid;
@@ -94,21 +94,22 @@ int main(int argc, char *argv[])
 {
     Solution s;
 
-    std::cout << s.divide(7, 3) << std::endl;
-    std::cout << s.divide(100, 23) << std::endl;
-    std::cout << s.divide(100, -23) << std::endl;
-    std::cout << s.divide(100000, 23) << std::endl;
-    std::cout << s.divide(INT32_MAX, 2) << std::endl;
-    std::cout << s.divide(INT32_MAX, 22) << std::endl;
-    std::cout << s.divide(INT32_MIN, -1) << std::endl;
-    std::cout << s.divide(INT32_MIN, 2) << std::endl;
+    // std::cout << s.divide(7, 3) << std::endl;
+    // std::cout << s.divide(100, 23) << std::endl;
+    // std::cout << s.divide(100, -23) << std::endl;
+    // std::cout << s.divide(100000, 23) << std::endl;
+    // std::cout << s.divide(INT32_MAX, 2) << std::endl;
+    // std::cout << s.divide(INT32_MAX, 22) << std::endl;
+    // std::cout << s.divide(INT32_MIN, -1) << std::endl;
+    // std::cout << s.divide(INT32_MIN, 2) << std::endl;
 
-    std::cout << s.divide(INT32_MIN, -INT32_MAX-1) << std::endl;
-    std::cout << s.divide(INT32_MIN, INT32_MIN) << std::endl;
-    std::cout << s.divide(INT32_MAX, -INT32_MAX) << std::endl;
-    std::cout << s.divide(10, -10) << std::endl;
+    // std::cout << s.divide(INT32_MIN, -INT32_MAX-1) << std::endl;
+    // std::cout << s.divide(INT32_MIN, INT32_MIN) << std::endl;
+    // std::cout << s.divide(INT32_MAX, -INT32_MAX) << std::endl;
+    // std::cout << s.divide(10, -10) << std::endl;
 
-    std::cout << s.divide(-20, 2) << std::endl;
+    // std::cout << s.divide(-20, 2) << std::endl;
+    std::cout << s.divide(-1021989372, -82778243) << std::endl;
 
     return 0;
 }

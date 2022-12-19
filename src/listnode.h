@@ -1,5 +1,6 @@
 #include <vector>
 #include <ostream>
+#include <iostream>
 
 struct ListNode {
     int val;
@@ -30,4 +31,14 @@ inline ListNode *ListNode::vec_to_list(std::vector<int> vec)
     }
 
     return head;
+}
+
+template<class T>
+static inline void print_vec(std::vector<T> &vec)
+{
+    std::cout << "[";
+    for (auto &i : vec) {
+        std::cout << i << ",";
+    }
+    std::cout << "]" << std::endl;
 }
