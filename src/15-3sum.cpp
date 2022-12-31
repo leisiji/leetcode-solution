@@ -29,7 +29,7 @@ vector<vector<int>> Solution::threeSum(vector<int>& nums)
 
     for (int i = 0; i < n;) {
         j = i + 1;
-        k = nums.size() - 1;
+        k = n - 1;
 
         while (j < k) {
             sum = nums[i] + nums[j] + nums[k];
