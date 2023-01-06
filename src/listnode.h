@@ -42,3 +42,16 @@ static inline void print_vec(std::vector<T> &vec)
     }
     std::cout << "]" << std::endl;
 }
+
+template<class T>
+static inline void print_vec_vec(std::vector<std::vector<T>> &vec)
+{
+    for (auto& i : vec) {
+        std::cout << "[";
+        for (auto& j : i) {
+            std::cout << j << ",";
+        }
+        std::cout << "], ";
+    }
+    std::cout << std::endl;
+}
