@@ -56,12 +56,11 @@ int Solution::uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid)
     int n = obstacleGrid[0].size();
     vector<vector<int>> ans(m, vector<int>(n, 0));
 
-    if (obstacleGrid[0][0] == 0) {
-        ans[0][0] = 1;
-    } else {
+    if (obstacleGrid[0][0] != 0) {
         return 0;
     }
 
+    ans[0][0] = 1;
     for (int i = 1; i < m; i++) {
         if (obstacleGrid[i][0] == 0) {
             ans[i][0] = ans[i - 1][0];
