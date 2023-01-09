@@ -1,20 +1,14 @@
 #include <vector>
 
-using namespace std;
+#include "listnode.h"
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
+using namespace std;
 
 class Solution
 {
 private:
     void preorderTraversal(TreeNode *root, vector<int> &out);
+
 public:
     // 递归的前序遍历
     vector<int> preorderTraversal(TreeNode *root);
@@ -43,7 +37,7 @@ vector<int> Solution::preorderTraversal(TreeNode *root)
 vector<int> Solution::preorderTraversal1(TreeNode *root)
 {
     vector<int> res;
-    vector<TreeNode*> stack;
+    vector<TreeNode *> stack;
     auto node = root;
 
     while (node != nullptr || !stack.empty()) {
