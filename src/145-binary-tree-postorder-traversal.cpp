@@ -10,13 +10,10 @@ public:
     vector<int> postorderTraversal(TreeNode* root);
 };
 
-/* 后序遍历和前 2 个有点不同：
- * 需要多使用一个 prev 节点，因为先左后右无需出栈，栈内始终保存了根，
- * 会有不停 "右->根" 的循环 */
 vector<int> Solution::postorderTraversal(TreeNode* root)
 {
     vector<int> out;
-    TreeNode* node = root, *prev = nullptr;
+    TreeNode *node = root, *prev = nullptr;
     vector<TreeNode*> stack;
 
     while (node != nullptr || !stack.empty()) {
@@ -26,12 +23,13 @@ vector<int> Solution::postorderTraversal(TreeNode* root)
         }
 
         node = stack.back();
-        auto *r = node->right;
+        auto* r = node->right;
         if (r != nullptr && r != prev) {
             node = r;
         } else {
             out.push_back(node->val);
-            prev = node;
+            prev = node;  // 遍历完 node 的子树后会回到 root 的父节点，node
+                          // 可能是父节点的右节点，prev 防止死循环
             node = nullptr;
             stack.pop_back();
         }

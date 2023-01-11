@@ -20,7 +20,6 @@ private:
         {2, "abc"}, {3, "def"},  {4, "ghi"}, {5, "jkl"},
         {6, "mno"}, {7, "pqrs"}, {8, "tuv"}, {9, "wxyz"},
     };
-    int mPos = 0;
 
     void genCombinations(const string &digits, const int pos, char *s, vector<string> &out);
 };
@@ -28,8 +27,9 @@ private:
 /* dfs */
 void Solution::genCombinations(const string &digits, const int pos, char *s, vector<string> &out)
 {
-    if (pos == digits.size()) {
-        s[digits.size()] = 0;
+    const int size = digits.size();
+    if (pos == size) {
+        s[size] = 0;
         out.push_back(s);
         return;
     }
