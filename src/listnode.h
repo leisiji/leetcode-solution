@@ -31,15 +31,15 @@ struct ListNode {
 
 inline ListNode *ListNode::vec_to_list(std::vector<int> vec)
 {
-    ListNode *head = nullptr;
-    ListNode **node = &head;
+    ListNode head;
+    ListNode *node = &head;
 
     for (auto &i : vec) {
-        *node = new ListNode(i);
-        node = &(*node)->next;
+        node->next = new ListNode(i);
+        node = node->next;
     }
 
-    return head;
+    return head.next;
 }
 
 template<class T>
