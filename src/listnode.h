@@ -17,7 +17,7 @@ struct ListNode {
     ListNode() : val(0), next(nullptr) {}
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode* next) : val(x), next(next) {}
-    static ListNode *vec_to_list(std::vector<int> vec);
+    static ListNode *vec_to_list(const std::vector<int> &vec);
     friend std::ostream &operator<<(std::ostream &out, ListNode *head) {
         out << "[";
         while (head != nullptr) {
@@ -29,7 +29,7 @@ struct ListNode {
     }
 };
 
-inline ListNode *ListNode::vec_to_list(std::vector<int> vec)
+inline ListNode *ListNode::vec_to_list(const std::vector<int> &vec)
 {
     ListNode head;
     ListNode *node = &head;

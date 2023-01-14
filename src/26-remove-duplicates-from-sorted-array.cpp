@@ -9,6 +9,7 @@ public:
     int removeDuplicates(vector<int> &nums);
 };
 
+// 移除排好序的重复数组元素
 int Solution::removeDuplicates(vector<int> &nums)
 {
     int tail = 1;
