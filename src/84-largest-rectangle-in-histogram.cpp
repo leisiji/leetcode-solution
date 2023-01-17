@@ -19,7 +19,6 @@ int Solution::largestRectangleArea(vector<int>& heights)
     const int size = heights.size();
 
     // 创建哨兵，第一个哨兵保证 stack 永远不为空，第二个哨兵强制遍历到末尾时所有元素出栈
-    heights.push_back(0);
     vector<int> h(size + 2);
     h[0] = 0;
     copy(heights.begin(), heights.end(), h.begin() + 1);
@@ -47,7 +46,7 @@ int main(int argc, char* argv[])
     vector<int> c = {2, 1, 2};
     Solution s;
     assert(s.largestRectangleArea(a) == 6);
-    // assert(s.largestRectangleArea(b) == 10);
-    // assert(s.largestRectangleArea(c) == 3);
+    assert(s.largestRectangleArea(b) == 10);
+    assert(s.largestRectangleArea(c) == 3);
     return 0;
 }
