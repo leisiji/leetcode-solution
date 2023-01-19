@@ -2,6 +2,7 @@
 #include <vector>
 #include <ostream>
 #include <iostream>
+#include <deque>
 
 struct TreeNode {
     int val;
@@ -10,6 +11,30 @@ struct TreeNode {
     TreeNode() : val(0), left(nullptr), right(nullptr) {}
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+
+    void print() {
+        std::deque<TreeNode*> q;
+
+        q.push_back(this);
+
+        while (!q.empty()) {
+            auto size = q.size();
+            for (int i = 0; i < size; i++) {
+                auto *node = q.front();
+                auto *left = node->left, *right = node->right;
+                std::cout << node->val << ",";
+                q.pop_front();
+
+                if (left != nullptr) {
+                    q.push_back(left);
+                }
+                if (right != nullptr) {
+                    q.push_back(right);
+                }
+            }
+            std::cout << std::endl;
+        }
+    }
 };
 
 struct ListNode {
