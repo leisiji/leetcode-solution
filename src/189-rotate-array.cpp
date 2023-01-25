@@ -1,4 +1,5 @@
 #include <vector>
+#include <numeric>
 
 #include "listnode.hpp"
 
@@ -29,23 +30,16 @@ void Solution::rotate(vector<int> &nums, int k)
     if (r == 0) {
         return;
     }
-    int prev;
-    int loop = greatestCommonMeasure(n, k); // 也可以使用 std::gcd(m, n) (c++17)
+    int loop = std::gcd(n, k);
 
     for (int j = 0; j < loop; j++) {
-        prev = nums[j];
-        int i = (j + r) % n;
-        while (i != j) {
-            int tmp = nums[i];
-            nums[i] = prev;
-            prev = tmp;
+        int start = r + j;
+        int i = start;
+        int prev = nums[i];
+        do {
             i = (i + r) % n;
-            // cout << "i: " << i << ", j: " << j << endl;
-            if (i == j + 1) {
-                loop = 1;
-            }
-        }
-        nums[j] = prev;
+            swap(prev, nums[i]);
+        } while (i != start);
     }
 }
 
