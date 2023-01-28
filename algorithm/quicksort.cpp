@@ -1,59 +1,50 @@
+#include <cstdlib>
 #include <iostream>
 #include <vector>
 
+#include "../src/listnode.hpp"
+
 using namespace std;
 
-static void swap(vector<int>& nums, int index1, int index2)
+static int partition(int left, int right, vector<int>& arr)
 {
-    int temp = nums[index1];
-    nums[index1] = nums[index2];
-    nums[index2] = temp;
-}
-
-static int partition(vector<int>& nums, int left, int right)
-{
-    int index = (right - left + 1) / 2 + left;
-    swap(nums, left, index);
-
-    // lt 是小于 pivot 的最后一个元素的索引
-    int pivot = nums[left];
     int lt = left;
+    const int mid = (left + right) >> 1;
+    const int pivot = arr[mid];
 
-    /* 循环不变量：
-     * all in [left + 1, lt] < pivot
-     * all in [lt + 1, i) >= pivot */
+    swap(arr[left], arr[mid]);
+
     for (int i = left + 1; i <= right; i++) {
-        if (nums[i] < pivot) {
+        if (arr[i] < pivot) {
             lt++;
-            swap(nums, i, lt);
+            swap(arr[i], arr[lt]);
         }
     }
-    swap(nums, left, lt);
+
+    swap(arr[left], arr[lt]);
 
     return lt;
 }
 
-static void quick_sort(vector<int>& nums, int left, int right)
+static void quick_sort(int left, int right, vector<int>& arr)
 {
-    int index = partition(nums, left, right);
     if (left > right) {
         return;
     }
-    quick_sort(nums, left, index - 1);
-    quick_sort(nums, index + 1, right);
+    int mid = partition(left, right, arr);
+    quick_sort(left, mid - 1, arr);
+    quick_sort(mid + 1, right, arr);
 }
 
-static void quick_sort(vector<int>& nums)
+static void quick_sort(vector<int>& arr)
 {
-    quick_sort(nums, 0, nums.size() - 1);
+    quick_sort(0, arr.size() - 1, arr);
 }
 
 int main(int argc, char* argv[])
 {
     vector<int> a = {10, 1000, 800, 400, 100, 300};
     quick_sort(a);
-    for (auto i : a) {
-        cout << i << endl;
-    }
+    print_vec(a);
     return 0;
 }

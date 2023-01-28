@@ -30,7 +30,7 @@ public:
             }
             tmp.push_back(1);
 
-            result.push_back(move(tmp));
+            result.emplace_back(tmp);
         }
 
         return result;
