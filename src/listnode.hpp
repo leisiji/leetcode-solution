@@ -69,21 +69,21 @@ inline ListNode *ListNode::vec_to_list(const std::vector<int> &vec)
 }
 
 template<class T>
-static inline void print_vec(std::vector<T> &vec)
+static inline void print_vec(const std::vector<T> &vec)
 {
     std::cout << "[";
-    for (auto &i : vec) {
+    for (const auto &i : vec) {
         std::cout << i << ",";
     }
     std::cout << "]" << std::endl;
 }
 
 template<class T>
-static inline void print_vec_vec(std::vector<std::vector<T>> &vec)
+static inline void print_vec_vec(const std::vector<std::vector<T>> &vec)
 {
     for (auto& i : vec) {
         std::cout << "[";
-        for (auto& j : i) {
+        for (const auto& j : i) {
             std::cout << j << ",";
         }
         std::cout << "], ";
