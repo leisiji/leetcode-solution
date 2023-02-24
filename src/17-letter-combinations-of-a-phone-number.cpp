@@ -1,61 +1,57 @@
 #include <cstdlib>
-#include <string>
 #include <iostream>
+#include <string>
 #include <vector>
 
 using namespace std;
 
-class Solution
-{
-public:
-    vector<string> letterCombinations(string digits);
-
-private:
-    struct Letter {
-        int num;
-        char letter[5];
-    };
-
-    constexpr static Letter letters[] = {
-        {2, "abc"}, {3, "def"},  {4, "ghi"}, {5, "jkl"},
-        {6, "mno"}, {7, "pqrs"}, {8, "tuv"}, {9, "wxyz"},
-    };
-
-    void genCombinations(const string &digits, const int pos, char *s, vector<string> &out);
+const static vector<string> letters = {
+    "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz",
 };
 
-/* dfs */
-void Solution::genCombinations(const string &digits, const int pos, char *s, vector<string> &out)
+class Solution
 {
-    const int size = digits.size();
-    if (pos == size) {
-        s[size] = 0;
-        out.push_back(s);
+private:
+    int len_;
+    vector<string> *out_;
+    string *digits_;
+    string tmp_;
+    void genCombinations(const int pos);
+
+public:
+    vector<string> letterCombinations(string digits);
+};
+
+void Solution::genCombinations(const int pos)
+{
+    if (pos == len_) {
+        out_->push_back(tmp_);
         return;
     }
 
-    const char *seq = letters[digits.at(pos) - '2'].letter;
-    while (*seq != 0) {
-        s[pos] = *seq;
-        genCombinations(digits, pos + 1, s, out);
-        seq++;
+    auto &letter = letters[digits_->at(pos) - '2'];
+
+    for (auto &i : letter) {
+        tmp_.push_back(i);
+        genCombinations(pos + 1);
+        tmp_.pop_back();
     }
 }
 
 vector<string> Solution::letterCombinations(string digits)
 {
-    vector<string> res;
-    char *s = static_cast<char*>(malloc(digits.size() + 1));
-
-    if (digits.size() == 0) {
+    len_ = digits.size();
+    if (len_ == 0) {
         return {};
     }
 
-    genCombinations(digits, 0, s, res);
+    vector<string> out;
+    out_ = &out;
+    digits_ = &digits;
 
-    free(s);
+    genCombinations(0);
 
-    return res;
+    return out;
 }
 
 int main(int argc, char *argv[])
